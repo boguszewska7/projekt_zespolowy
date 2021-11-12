@@ -15,7 +15,7 @@
     <title>Add Teachers</title>
 </head>
 
-<body>
+<body id="add-teachers">
     <nav class="main-nav">
         <div class="container">
             <div class="logo">
@@ -32,87 +32,415 @@
             </div>
         </div>
     </nav>
-    <header id="teachers-add">
+    <header class="tittle-container">
+            <h1>Dodaj nauczyciela</h1>   
+    </header>
+    <section id="add">
         <div class="container">
-            <div class="tittle-container">
-                <h1>Dodaj nauczycieli</h1>
-            </div>
+           
             <div class="card-container">
                 <div class="card-tittle">
                     <ul>
-                        <li>KOD</li>
-                        <li>NAZWA</li>
-                        <li>ILOŚĆ MIEJSC</li>
+                        <li>IMIĘ</li>
+                        <li>NAZWISKO</li>
+                        <li>ILOŚĆ GODZIN</li>
+
                     </ul>
                 </div>
-                <div class="card ">
-                    <form action="#"></form>
+
+                  <!-- <form action="#">--> 
                     <ul class="ul-add green-shadow">
-                        <li> <input type="text" id="kod" name="kod" value="kod"></li>
-                        <li> <input type="text" id="name" name="name" value="NAZWA"></li>
+                        <li> <input type="text" id="imie" name="imie" value="Imie"></li>
+                        <li> <input type="text" id="Nazwisko" name="Nazwisko" value="Nazwisko"></li>
                         <li> <input type="number" id="count" name="count" value="1"></li>
                         <li>
                             <div class="btn-container">
-                                <div class="btn btn-dark">
-                                    DODAJ
-                                </div>
+                                <input class="btn btn-dark" type="submit" value="DODAJ">
+                            </div>
+                        </li>
+                        <li class="planner">
+                            <table class="dark-shadow">
+                                <thead>
+                                    <tr>
+                                        <th>Godziny</th>
+                                        <th>Poniedziałek</th>
+                                        <th>Wtorek</th>
+                                        <th>Środa</th>
+                                        <th>Czwartek</th>
+                                        <th>Piątek</th>
+                                        <th>Sobota</th>
+                                        <th>Niedziela</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>8-9</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9-10</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>10-11</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>11-12</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>12-13</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>13-14</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>15-16</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>16-17</td>
+                                        <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                        <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                        <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                        <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                        <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                        <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                        <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                    <div class="under-tittle-container">
+                        <h6>Dodani nauczyciele</h>
+                    </div>
+                    <div class="all-seperate"> 
+                    <button class="unhiden_item dark-shadow">
+                        <ul class="item">
+                        <li><p>Sylwia</p></li>
+                        <li> <p>Boguszewsla</p></li>
+                        <li><p>15</p></li>
+                        <li>
+                            <div class="btn-container">
+                                <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                                <input class="btn btn-dark" type="submit" value="USUŃ">
                             </div>
                         </li>
                     </ul>
+                    </button>
+                    <div class="panel">
+                    <table class="hidden_item">
+                        <thead>
+                            <tr>
+                                <th>Godziny</th>
+                                <th>Poniedziałek</th>
+                                <th>Wtorek</th>
+                                <th>Środa</th>
+                                <th>Czwartek</th>
+                                <th>Piątek</th>
+                                <th>Sobota</th>
+                                <th>Niedziela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8-9</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                            </tr>
+                            <tr>
+                                <td>9-10</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
 
-                    <ul class="all-teacher dark-shadow">
+                            </tr>
+                            <tr>
+                                <td>10-11</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                            </tr>
+                            <tr>
+                                <td>11-12</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>12-13</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>13-14</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>15-16</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>16-17</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <button href=“this_page.htm#myanchor” class="unhiden_item">
+                        <ul class="item dark-shadow">
                         <li>
-                            <ul class="teacher">
-                                <li>
-                                    <p>czyt.</p>
-                                </li>
-                                <li>
-                                    <p>Czytelnia</p>
-                                </li>
-                                <li>
-                                    <p>15</p>
-                                </li>
-                                <li>
-                                    <div class="btn-container">
-                                        <div class="btn btn-dark"> EDYTUJ</div>
-                                        <div class="btn btn-dark"> USUŃ </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <p>Olek</p>
                         </li>
                         <li>
-                            <ul class="teacher">
-                                <li>
-                                    <p>czyt.</p>
-                                </li>
-                                <li>
-                                    <p>Czytelnia</p>
-                                </li>
-                                <li>
-                                    <p>15</p>
-                                </li>
-                                <li>
-                                    <div class="btn-container">
-                                        <div class="btn btn-dark"> EDYTUJ</div>
-                                        <div class="btn btn-dark"> USUŃ </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <p>Programista Roku</p>
+                        </li>
+                        <li>
+                            <p>1150</p>
+                        </li>
+                        <li>
+                            <div class="btn-container">
+                                <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                                <input class="btn btn-dark" type="submit" value="USUŃ">
+                            </div>
                         </li>
                     </ul>
+                    </button>
+                    <div class="panel">
+                    <table class="hidden_item">
+                        <thead>
+                            <tr>
+                                <th>Godziny</th>
+                                <th>Poniedziałek</th>
+                                <th>Wtorek</th>
+                                <th>Środa</th>
+                                <th>Czwartek</th>
+                                <th>Piątek</th>
+                                <th>Sobota</th>
+                                <th>Niedziela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8-9</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                            </tr>
+                            <tr>
+                                <td>9-10</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
 
-                    <div class="btn-container-center">
-                        <div class="btn btn-dark">
-                            <p>ZAPISZ</p>
-                        </div>
+                            </tr>
+                            <tr>
+                                <td>10-11</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+                            </tr>
+                            <tr>
+                                <td>11-12</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>12-13</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>13-14</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>15-16</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                            <tr>
+                                <td>16-17</td>
+                                <td><input type="checkbox" id="1-poniedzialek" name="1-poniedzialek"></td>
+                                <td><input type="checkbox" id="1-wtorek" name="1-wtorek"></td>
+                                <td><input type="checkbox" id="1-sroda" name="1-sroda"></td>
+                                <td><input type="checkbox" id="1-czawrtek" name="1-czawrtek"></td>
+                                <td><input type="checkbox" id="1-piatek" name="1-piatek"></td>
+                                <td><input type="checkbox" id="1-sobota" name="1-sobota"></td>
+                                <td><input type="checkbox" id="1-niedziela" name="1-niedziela"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
                     </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="btn-container-center">
+                        <a class="btn btn-dark" href="index.html">
+                            <p>ZAPISZ</p>
+                        </a>
+                   
+                    </div>
+                   <!--</form>--> 
             </div>
-            
-        </div>
-    </header>
 
+        </div>
+    </section>
+    <footer>
+        <p>LOREM IPSUM</p>
+    </footer>
+
+
+    <script>
+        var acc = document.getElementsByClassName("unhiden_item");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        }
+        </script>
+        
 </body>
 
 </html>
