@@ -46,10 +46,10 @@
                 </div>
                <!--<form action="#" id="class-ad">--> 
                 <ul class="ul-add green-shadow">
-                    <li> <input type="text" id="kod" name="kod" placeholder="Kod"></li>
+                    <li> <input type="text" id="name" name="name" placeholder="Kod"></li>
                     <li>
                         <div class="btn-container">
-                            <input class="btn btn-dark" type="submit" value="DODAJ">
+                            <button class="btn btn-dark" id="addNewClass" type="submit" value="DODAJ">DODAJ </button>
                         </div>
                     </li>
                     <li class="addStudent dark-shadow">
@@ -64,133 +64,16 @@
                     </li>
 
                     <li>
-                        <p>Liczba dodanych uczniów: 23</p>
+                        <p>Liczba dodanych uczniów: 0</p>
                     </li>
                 </ul>
                 <div class="under-tittle-container">
                     <h6>Dodane klasy</h>
                 </div>
                 <div class="all-seperate">
-                    <button class="unhiden_item dark-shadow">
-                        <ul class="item">
-                            <li>
-                                <p>1B</p>
-                            </li>
-                            <li>
-                                <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                            </li>
-                        </ul>
-                    </button>
-                    <div class="panel">
-                        <div id="studentList">
-                            <ul>
-                                <li>Jakob JOŁ</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
-                    <button class="unhiden_item">
-                        <ul class="item dark-shadow">
-                            <li>
-                                <p>2B</p>
-                            </li>
-                            <li>
-                                <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                            </li>           
-                        </ul>
-                    </button>
-                    <div class="panel">
-                        <div id="studentList">
-                            <ul>
-                                <li>Jakob JOŁ</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-
-                            <ul>
-                                <li>Tomek rozpierdol</li>
-                                <li>
-                                    <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
-                                </div>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
+                   
                 </div>
+                   
                 <div class="btn-container-center">
                     <a class="btn btn-dark" href="index.html">
                         <p>ZAPISZ</p>
@@ -199,7 +82,6 @@
                 </div>
           <!--</form>-->  
             </div>
-
         </div>
     </section>
     <footer>
@@ -208,6 +90,8 @@
 
 
     <script>
+
+        localStorage.clear();
         var acc = document.getElementsByClassName("unhiden_item");
         var i;
 
@@ -224,48 +108,87 @@
         }
 
 
-        class Student {
+        var studentId = 0;
+        let studentsList = [];
+        class Student {  
+        
             constructor(imie, nazwisko) {
+                this.id = studentId++;
                 this.imie = imie;
                 this.nazwisko = nazwisko;
-               
             }
+
+
+            get Imie(){
+                return this.imie;
+            }
+            get Nazwisko(){
+                return this.nazwisko;
+            }
+            
         }
+
+        var classID = 0 ;
+        let classesList = [];
+
+        class Class{
+            constructor(name){
+                this.id = classID++;
+                this.name=name;
+                this.studentsArr = [];
+            }
+            newStudent(imie, nazwisko){
+            let s = new Student(imie, nazwisko);
+            this.studentsArr.push(s);
+            return s;
+            }
+
+            allStudents(){
+             return this.studentsArr
+            }
+
+            get numberOfPlayers(){
+            return this.studentsArr.length
+            }
+
+            ChangeName(name){
+                this.name=name;
+            }
+
+            Clear(){
+                this.studentsArr = [];
+            }
+
+            Reset(){
+                this.name=tmp;
+                this.id=classID++;
+                this.studentsArr = [];
+            }
+
+        }
+
+        let tmp = new Class("tmp");
 
         class UI {
             static displayStudents(){
-                const storedStudents = [
-                    {    
-                        imie: 'Sylwia',
-                        nazwisko: 'Dosc'
-                    },
-                    {
-                        imie: 'Juz',
-                        nazwisko: 'Mam'
-                    }
-                ];
-
-        
-                const students = storedStudents;
-
-                students.forEach((student) => UI.addStudentToList(student));
             }  
 
             static addStudentToList(student){
+
                 
                 const list = document.querySelector('#studentList');
+                
                 const row = document.createElement('ul');
 
 
                 row.innerHTML = `
-              <li>${student.imie } ${student.nazwisko}</li>
+              <li>${student.imie} ${student.nazwisko}</li>
               
               <li><div class="btn-container">
               <input class="btn btn-dark" type="submit" value="EDYTUJ">
                <input class="btn btn-dark" type="submit" value="USUŃ">
                </div></li>  
             `;
-
                 list.appendChild(row);
             }
 
@@ -275,22 +198,121 @@
 
             }
 
+            static clearAllFields(){
+                document.querySelector('#imie').value= '';
+                document.querySelector('#nazwisko').value= '';
+                document.querySelector('#name').value ='';
+                const row = document.querySelector('#studentList');
+                row.innerHTML = '';
+            }
+
+            static displayClasses(){
+                    tmp.ChangeName("1b");
+                    tmp.newStudent("Tomek", "Guz");
+                    tmp.newStudent("Ola", "Guz");
+                    
+
+                UI.addClassToList(tmp);
+
+                tmp.Clear();
+            }
+
+            static addClassToList(klasa){
+
+                const list2 = document.querySelector('.all-seperate');
+                const row2 = document.createElement('button');
+                row2.className = "unhiden_item dark-shadow";
+
+                row2.innerHTML= `
+
+                <ul class="item">
+                            <li>
+                            <p>${klasa.name}</p>
+                            </li>
+                            <li>
+                                <div class="btn-container">
+                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                                    <input class="btn btn-dark" type="submit" value="USUŃ">
+                                </div>
+                            </li>
+                 </ul>
+                `;
+
+                list2.appendChild(row2);
+
+                const row3=document.createElement('div');
+                row3.className='panel';
+
+                const row4 = document.createElement('div');
+                row4.id='studentList';
+
+                for(let i=0; i<klasa.studentsArr.length; i++){
+                const row5 = document.createElement('ul');
+                    row5.innerHTML= `
+                    
+                    <li>${klasa.studentsArr[i].Imie} ${klasa.studentsArr[i].Nazwisko}</li>
+                    <li>
+                    <div class="btn-container">
+                       <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                       <input class="btn btn-dark" type="submit" value="USUŃ">
+                     </div>
+                     </li>
+                    
+                    `;
+                    row4.appendChild(row5);
+                }
+                
+                row3.appendChild(row4);
+                list2.appendChild(row3);
+
+
+
+            }
         }
+
         document.addEventListener('DOMContentLoaded', UI.displayStudents);
+        document.addEventListener('DOMContentLoaded', UI.displayClasses);
 
         var addNew = document.querySelector('#addNew');
         addNew.addEventListener('click', (e) => {
             e.preventDefault();
-           
+            
             const imie = document.querySelector('#imie').value;
             const nazwisko = document.querySelector('#nazwisko').value;
         
-            const student = new Student(imie,nazwisko);
+            student = tmp.newStudent(imie, nazwisko);
+
+            studentsList.push(student);
+
+            console.log(student);
 
             UI.addStudentToList(student);
-
+           
             UI.clearFields();
         });
+
+        var addNewClass = document.querySelector('#addNewClass');
+        addNewClass.addEventListener('click', (e) => {
+            e.preventDefault();
+           
+            const name = document.querySelector('#name').value;
+           // const studentsArr = document.querySelector('#nazwisko').value;
+
+            tmp.ChangeName(name);
+
+            classesList.push(tmp);
+
+            localStorage.setItem('MyClasses', JSON.stringify(classesList));
+
+            UI.addClassToList(tmp);
+
+            UI.clearAllFields();
+            studentsList =[];
+            
+            var studentId = 0;
+        });
+
+
 
     
 

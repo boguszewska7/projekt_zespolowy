@@ -347,7 +347,7 @@ input[type=submit]:hover{
 #add-class #add .card-container .ul-add{
     display: grid;
     padding: 1rem;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     grid-template-columns: 3fr 4fr;
     justify-content: start;
     align-items: center;
@@ -473,9 +473,9 @@ padding-bottom: 0.4rem;
 }
 
 .panel{
-   margin-top: 1rem ;
-   max-height: 0;
-   overflow: hidden;
+  margin-top: 1rem ;
+  /*  max-height: 0;
+   overflow: hidden;*/
    border-radius: 30px;
    background-color: rgba(132, 205, 199, 0.2);
    backdrop-filter: blur( 6.5px );
@@ -486,7 +486,9 @@ padding-bottom: 0.4rem;
 
 /*uczniowie*/
 
-.addStudent{
+.addStudent{ 
+   /* visibility: hidden;
+    height: 0;*/
     width: 100%;
     padding: 1rem;
     grid-column: 1 / span 4;  
@@ -495,11 +497,21 @@ padding-bottom: 0.4rem;
     grid-gap: 2rem;
     justify-content: center;
     align-items: center;
+   
+}
+
+.ul-add .btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addStudent input {
    height: 35px;
 }
+
+
 .studentListContainer .btn-container
 .addStudent .btn-container{
     display: flex;
@@ -513,6 +525,7 @@ padding-bottom: 0.4rem;
  
 .studentListContainer
  { 
+    width: 100%;
     padding: 1rem;
     grid-column: 1 / span 4;  
     display: flex;
@@ -522,11 +535,11 @@ padding-bottom: 0.4rem;
 }
 
 #studentList{
+    width: 100%;
     max-height: 500px;
-    padding: 1rem;
      border-radius: 26px;
-     background-color: var(--primary-color);
-     overflow-y: scroll;
+    background-color: var(--primary-color);
+     overflow-y: auto;
 }
 
 #studentList ul{
@@ -547,8 +560,34 @@ padding-bottom: 0.4rem;
 }
 
 
-.all-seperate #studentList{
+.all-seperate{
     background: none;
+}
+
+.all-seperate .studentList{
+    max-height: 500px;
+    padding: 1rem;
+     border-radius: 26px;
+     background-color: var(--primary-color);
+     overflow-y: scroll;
+}
+
+.all-seperate .studentList ul{
+    padding: 1rem 1rem;
+    display: grid;
+    grid-template-columns: 2fr  3fr;
+    border-top: dotted rgba(251, 255, 253, 0.2) 0.1px;
+    justify-content: center;
+    align-items: center;   
+}
+
+.studentList ul:first-child{
+    padding: 1rem 1rem;
+    display: grid;
+    grid-template-columns: 2fr  1fr;
+    border : none;
+    justify-content: center;
+    align-items: center;   
 }
 
 
