@@ -332,6 +332,9 @@
                 
             });
 
+            classesList.push(newclass);
+            localStorage.setItem('MyClasses', JSON.stringify(classesList));
+
             UI.addClassToList(newclass);
 
             const k = document.querySelector(".studentListContainer");
