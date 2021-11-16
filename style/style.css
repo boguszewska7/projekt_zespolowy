@@ -487,8 +487,8 @@ padding-bottom: 0.4rem;
 /*uczniowie*/
 
 .addStudent{ 
-   /* visibility: hidden;
-    height: 0;*/
+    visibility: hidden;
+    height: 0;
     width: 100%;
     padding: 1rem;
     grid-column: 1 / span 4;  
@@ -525,6 +525,7 @@ padding-bottom: 0.4rem;
  
 .studentListContainer
  { 
+     
     width: 100%;
     padding: 1rem;
     grid-column: 1 / span 4;  
@@ -588,6 +589,10 @@ padding-bottom: 0.4rem;
     border : none;
     justify-content: center;
     align-items: center;   
+}
+
+#submitNewClass{
+    visibility: hidden;
 }
 
 
