@@ -63,7 +63,7 @@
                         </div>
                     </li>
 
-                    <li>
+                    <li id="liczba">
                         <p>Liczba dodanych uczniów: 0</p>
                     </li>
                     <li>
@@ -95,20 +95,7 @@
     <script>
 
         localStorage.clear();
-        var acc = document.getElementsByClassName("unhiden_item");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            })
-        }
+        
 
 
         var studentId = 0;
@@ -145,8 +132,6 @@
             this.studentsArr.push(s);
             return s;
             }
-
-
 
             allStudents(){
              return this.studentsArr
@@ -233,12 +218,20 @@
                             </li>
                             <li>
                                 <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                                   
                                     <input class="btn btn-dark" type="submit" value="USUŃ">
                                 </div>
                             </li>
                  </ul>
                 `;
+                row2.addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }});
 
                 list2.appendChild(row2);
 
@@ -255,7 +248,7 @@
                     <li>${klasa.studentsArr[i].Imie} ${klasa.studentsArr[i].Nazwisko}</li>
                     <li>
                     <div class="btn-container">
-                       <input class="btn btn-dark" type="submit" value="EDYTUJ">
+                       
                        <input class="btn btn-dark" type="submit" value="USUŃ">
                      </div>
                      </li>
@@ -266,28 +259,22 @@
                 
                 row3.appendChild(row4);
                 list2.appendChild(row3);
-
-
-
             }
         }
 
-        document.addEventListener('DOMContentLoaded', UI.displayStudents);
-        document.addEventListener('DOMContentLoaded', UI.displayClasses);
+       
 
         var addNew = document.querySelector('#addNew');
         addNew.addEventListener('click', (e) => {
             e.preventDefault();
-
+            //const t = document.querySelector("#liczba");
+            //t.style.visibility = "visible"; 
             const element = document.querySelector("#submitNewClass");
             element.style.visibility = "visible";
 
             const k = document.querySelector(".studentListContainer");
             k.style.visibility = "visible";
             k.style.height="min-content";
-
-                
-
 
             const imie = document.querySelector('#imie').value;
             const nazwisko = document.querySelector('#nazwisko').value;
@@ -329,6 +316,9 @@
 
             studentsList.forEach(student => {
                 newclass.newStudent(student.Imie, student.Nazwisko);
+
+            const s = document.querySelector("#submitNewClass");
+            s.style.visibility = "hidden";
                 
             });
 
@@ -355,6 +345,9 @@
             
 
         });
+
+        
+
 
     
 

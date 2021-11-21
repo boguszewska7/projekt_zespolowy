@@ -55,7 +55,7 @@
     backdrop-filter: blur( 6.5px );
     -webkit-backdrop-filter: blur( 6.5px );
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18)
+   /* border: 1px solid rgba(255, 255, 255, 0.18)*/
 }
 
 
@@ -449,33 +449,52 @@ margin-top: 5rem;
     width: 100%;
     justify-content: center;
     align-items: center;
-  
 } 
 .hidden_item thead tr,
 .planner thead tr{
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
-    border: solid rosybrown;
-      
 }
-.hidden_item td,
-.planner td{
-    border-top: dotted rgba(251, 255, 253, 0.2) 0.1px;
-}
+
 
 
 .hidden_item td, .hidden_item  th,
 .planner table td, .planner table th{
 text-align: center;
 padding-top: 0.4rem;
+justify-items: center;
+align-items: center;
+align-self: center;
 padding-bottom: 0.4rem;
 }
 
+.hidden_item  tbody tr,
+.planner table tbody tr{
+    width: 100%;
+    display: grid;
+    border-top: dotted rgba(251, 255, 253, 0.2) 0.1px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+#studentList ul:first-child{
+    padding: 1rem 1rem;
+    display: grid;
+    grid-template-columns: 2fr  1fr;
+    border : none;
+    justify-content: center;
+    align-items: center;   
+}
+
+
+
 .panel{
   margin-top: 1rem ;
-  /*  max-height: 0;
-   overflow: hidden;*/
+  max-height: 0;
+   overflow: hidden;
    border-radius: 30px;
    background-color: rgba(132, 205, 199, 0.2);
    backdrop-filter: blur( 6.5px );
@@ -598,14 +617,47 @@ padding-bottom: 0.4rem;
 
 
 
+  input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--form-background);
+    /* Not removed via appearance */
+   
+    margin:0 auto;
+    font: inherit;
+    color: currentColor;
+    width: 4em;
+    height: 1.5em;
+    border: 0.15em solid rgba(2, 0, 0, 0.123);
+    border-radius: 5px;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    background-color: rgba(2, 0, 0, 0.37);
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 4em;
+    height: 1.5em;
+    border-radius: 5px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    /*border: 0.15em solid  rgba(71, 0, 0, 0.973);*/
+    box-shadow: inset 1em 1em var(--form-control-color);
+    /* Windows High Contrast Mode */
+    background-color: rgba(71, 0, 0, 0.973);
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  
+  #liczba{
+      visibility: hidden;
 
-
-
-
-
-
-
-
-
-
-
+  }
+  
