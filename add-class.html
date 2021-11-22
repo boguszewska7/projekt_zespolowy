@@ -78,9 +78,10 @@
                 </div>
                    
                 <div class="btn-container-center">
-                    <a class="btn btn-dark" href="index.html">
-                        <p>ZAPISZ</p>
-                    </a>
+                  <!--<a class="btn btn-dark" href="index.html">-->  
+                    <button id="submitAllClass" class="btn btn-dark">
+                        <p>ZAPISZ</p><a href="index.html"></a>
+                    </button>
 
                 </div>
           <!--</form>-->  
@@ -93,10 +94,6 @@
 
 
     <script>
-
-        localStorage.clear();
-        
-
 
         var studentId = 0;
         var studentsList = [];
@@ -115,6 +112,10 @@
             get Nazwisko(){
                 return this.nazwisko;
             }
+            get Id(){
+                return this.id;
+            }
+
             
         }
 
@@ -166,17 +167,26 @@
                 const list = document.querySelector('#studentList');
                 
                 const row = document.createElement('ul');
-
-
+                
                 row.innerHTML = `
-              <li>${student.imie} ${student.nazwisko}</li>
+               <li >  ${student.imie} ${student.nazwisko}</li>
               
-              <li><div class="btn-container">
-              <input class="btn btn-dark" type="submit" value="EDYTUJ">
-               <input class="btn btn-dark" type="submit" value="USUŃ">
+               <li><div class="btn-container">
+               <input id=${student.id} class="btn btn-dark delete" type="submit" value="USUŃ">
                </div></li>  
             `;
-                list.appendChild(row);
+            row.addEventListener('click' ,(e) => {
+                    UI.deleteStudent(e.target);
+                    let I= e.target.id;
+                     for( var i = 0; i < studentsList.length; i++){ 
+                         if ( studentsList[i].Id == I) 
+                         {
+                        studentsList.splice(i, 1);
+                        console.log(studentsList) 
+                         }
+                     }});
+
+          list.appendChild(row);
             }
 
             static clearFields(){
@@ -209,6 +219,7 @@
                 const list2 = document.querySelector('.all-seperate');
                 const row2 = document.createElement('button');
                 row2.className = "unhiden_item dark-shadow";
+                row2.id=klasa.id+"item";
 
                 row2.innerHTML= `
 
@@ -218,13 +229,12 @@
                             </li>
                             <li>
                                 <div class="btn-container">
-                                   
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
+                                 <input id=${klasa.id} class="btn btn-dark delete" type="submit" value="USUŃ">
                                 </div>
                             </li>
                  </ul>
-                `;
-                row2.addEventListener("click", function() {
+                `;            
+            row2.addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
@@ -233,32 +243,84 @@
               panel.style.maxHeight = panel.scrollHeight + "px";
             }});
 
+              //usuwanie nauczyciela i update tablicy nauczyciela, usuniecie schowanego panelu
+            
+            row2.addEventListener('click' ,(e) => {
+                   
+                    UI.deleteClass(e.target);
+                    let s= e.target.id;
+                    
+                    UI.deletePanel(e.target,s);
+                    for( var i = 0; i < classesList.length; i++){ 
+                         if ( classesList[i].id == s) 
+                        {  classesList.splice(i, 1); }
+                     }
+
+                     localStorage.setItem('MyClasses', JSON.stringify(classesList));
+      
+             });
+
                 list2.appendChild(row2);
 
                 const row3=document.createElement('div');
                 row3.className='panel';
+                row3.id=klasa.id+"panel";
 
                 const row4 = document.createElement('div');
                 row4.id='studentList';
-
-                for(let i=0; i<klasa.studentsArr.length; i++){
+                let i;
+                for(i=0; i<klasa.studentsArr.length; i++){
                 const row5 = document.createElement('ul');
                     row5.innerHTML= `
                     
                     <li>${klasa.studentsArr[i].Imie} ${klasa.studentsArr[i].Nazwisko}</li>
                     <li>
                     <div class="btn-container">
-                       
-                       <input class="btn btn-dark" type="submit" value="USUŃ">
+                    <input id=${klasa.studentsArr[i].id} class="btn btn-dark  delete" type="submit" value="USUŃ">
                      </div>
                      </li>
                     
                     `;
+                    
+                    row5.addEventListener('click' ,(e) => {
+                    UI.deleteStudent(e.target);
+                    let I= e.target.id;
+                     for( var i = 0; i < klasa.studentsArr.length; i++){ 
+                         if ( klasa.studentsArr[i].Id == I) 
+                        {  klasa.studentsArr.splice(i, 1); }
+                     }
+    
+                      
+         
+                     localStorage.setItem('MyClasses', JSON.stringify(classesList));
+                  });
                     row4.appendChild(row5);
                 }
                 
                 row3.appendChild(row4);
+                
                 list2.appendChild(row3);
+            }
+        
+            static deleteStudent(element){
+                if(element.classList.contains('delete'))
+                element.parentElement.parentElement.parentElement.remove();
+            }
+
+            static deleteClass(element){
+                if(element.classList.contains('delete')){
+                element.parentElement.parentElement.parentElement.remove();  
+                }
+              
+            }
+
+            static deletePanel(element, id){
+                if(element.classList.contains('delete')){
+                var el = document.getElementById(id+"panel");
+                el.remove();
+                var e = document.getElementById(id+"item");
+                e.remove();
+                }
             }
         }
 
@@ -282,8 +344,6 @@
             student = new Student(imie, nazwisko);
 
             studentsList.push(student);
-
-            console.log(studentsList);
 
             UI.addStudentToList(student);
            
@@ -312,8 +372,6 @@
 
             let newclass = new Class(name);
 
-            console.log(studentsList[0].imie);
-
             studentsList.forEach(student => {
                 newclass.newStudent(student.Imie, student.Nazwisko);
 
@@ -321,8 +379,8 @@
             s.style.visibility = "hidden";
                 
             });
-
             classesList.push(newclass);
+            
             localStorage.setItem('MyClasses', JSON.stringify(classesList));
 
             UI.addClassToList(newclass);
@@ -342,14 +400,7 @@
             const row = document.querySelector('#studentList');
                 row.innerHTML = '';
 
-            
-
         });
-
-        
-
-
-    
 
     </script>
 

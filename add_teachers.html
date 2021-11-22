@@ -50,9 +50,9 @@
 
                   <!-- <form action="#">--> 
                     <ul class="ul-add green-shadow">
-                        <li> <input type="text" id="imie" name="imie" value="Imie"></li>
-                        <li> <input type="text" id="nazwisko" name="Nazwisko" value="Nazwisko"></li>
-                        <li> <input type="number" id="count" name="count" value="1"></li>
+                        <li> <input type="text" id="imie" name="imie" placeholder="Imie"></li>
+                        <li> <input type="text" id="nazwisko" name="Nazwisko" placeholder="Nazwisko"></li>
+                        <li> <input type="number" id="count" name="count" placeholder="1"></li>
                         <li>
                             <div class="btn-container">
                                 <input id="addNew" class="btn btn-dark" type="submit" value="DODAJ">
@@ -200,6 +200,7 @@
                 const list2 = document.querySelector('.all-seperate');
                 const row2 = document.createElement('button');
                 row2.className = "unhiden_item dark-shadow";
+                row2.id=nauczyciel.id+"item";
 
                 row2.innerHTML= `
 
@@ -210,14 +211,14 @@
                            
                             <li>
                                 <div class="btn-container">
-                                    <input class="btn btn-dark" type="submit" value="USUŃ">
+                                    <input id=${nauczyciel.id} class="btn btn-dark delete" type="submit" value="USUŃ">
                                 </div>
                             </li>
                  </ul>
                 `;
 
 
-             row2.addEventListener("click", function() {
+            row2.addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
@@ -225,10 +226,26 @@
             } else {
               panel.style.maxHeight = panel.scrollHeight + "px";
             }});
+            //usuwanie nauczyciela i update tablicy nauczyciela, usuniecie schowanego panelu
+            row2.addEventListener('click' ,(e) => {
+                   
+                   UI.deleteTeacher(e.target);
+                   let s= e.target.id;
+                   UI.deletePanel(e.target,s);
+                   for( var i = 0; i < nauczycieleList.length; i++){ 
+                        if ( nauczycieleList[i].id == s) 
+                       {  nauczycieleList.splice(i, 1); }
+                    }
+
+                    localStorage.setItem('MyTeachers', JSON.stringify(nauczycieleList));
+
+            });
                 list2.appendChild(row2);
 
                 const row3=document.createElement('div');
                 row3.className='panel';
+                row3.id=nauczyciel.id+"panel";
+
 
                 const row4 = document.createElement('table');
                 row4.className='hidden_item';
@@ -276,6 +293,22 @@
                 row3.appendChild(row4);
                 list2.appendChild(row3);
 
+            }
+
+            static deleteTeacher(element){
+                if(element.classList.contains('delete')){
+                element.parentElement.parentElement.parentElement.remove();  
+                }
+              
+            }
+
+            static deletePanel(element, id){
+                if(element.classList.contains('delete')){
+                var el = document.getElementById(id+"panel");
+                el.remove();
+                var e = document.getElementById(id+"item");
+                e.remove();
+                }
             }
             static clearFields(){
                 document.querySelector('#imie').value= '';
@@ -395,9 +428,9 @@
             nauczycieleList.push(nauczyciel);
 
             UI.addNauczycielToList(nauczyciel);
-            localStorage.setItem('MyClasses', JSON.stringify(nauczycieleList));
+            localStorage.setItem('MyTeachers', JSON.stringify(nauczycieleList));
             UI.clearFields();
-            hidden();
+           
         });
     
         </script>

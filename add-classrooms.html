@@ -82,7 +82,7 @@
 
 <script>
     var classroomId = 0;
-    var clasroomsList = [];
+    var classroomsList = [];
     class Classroom {
 
         constructor(kod, nazwa, ilosc_miejsc) {
@@ -115,28 +115,49 @@
 
             const list2 = document.querySelector('.all');
             const row2 = document.createElement('li');
-           
-            row2.innerHTML = `
-
-            <ul class="item">
+            const row3=document.createElement('ul');
+             row3.className='item';
+            row3.innerHTML = `
              <li> <p>${klasa.kod}</p></li>
              <li> <p>${klasa.nazwa}</p></li>
              <li> <p>${klasa.ilosc_miejsc}</p> </li>
              <li> <div class="btn-container">
-              <input class="btn btn-dark" type="submit" value="USUŃ">
+              <input id=${klasa.id} class="btn btn-dark delete" type="submit" value="USUŃ">
             
                    </div>
             </li>
-            </ul>
         `;
+       //usuwanie klasy i update tablicy class
+        row3.addEventListener('click' ,(e) => {
+        
+            UI.deleteClassroom(e.target);
+            console.log(e.target)
+            let s=e.target.id;
+            for( var i = 0; i < classroomsList.length; i++){ 
+            if (classroomsList[i].id == s) 
+            {
+               classroomsList.splice(i, 1);
+               console.log(classroomsList)}
+            };
 
-            list2.appendChild(row2);     
+           localStorage.setItem('MyClassrooms', JSON.stringify(classroomsList));
+       });
+
+row2.appendChild(row3);
+     list2.appendChild(row2);     
         }
         static clearFields(){
                 document.querySelector('#kod').placeholder= 'kod';
                 document.querySelector('#name').placeholder= 'nazwa';
                 document.querySelector('#count').placeholder= '1';
 
+        }
+
+        static deleteClassroom(element){
+                if(element.classList.contains('delete')){
+                element.parentElement.parentElement.parentElement.remove();  
+                }
+              
             }
     }
   
@@ -151,13 +172,13 @@
         
            klasa = new Classroom(kod,nazwa, ilosc_miejsc);
 
-             clasroomsList.push(klasa);
+             classroomsList.push(klasa);
 
             UI.addClassRoomToList(klasa);
            
             UI.clearFields();
 
-            localStorage.setItem('MyClassrooms', JSON.stringify(clasroomsList));
+            localStorage.setItem('MyClassrooms', JSON.stringify(classroomsList));
         });
 
 
