@@ -12,8 +12,9 @@
   
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(251, 255, 253, 0.2); 
-    border-radius:0 30px 30px 0;
+      background-color: rgba(54, 24, 24, 0.055);
+    /*box-shadow: inset 0 0 5px rgba(251, 255, 253, 0.2); */
+    border-radius:0 10px 10px 0;
   }
    
   /* Handle */
@@ -295,8 +296,9 @@ input[type=submit]:hover{
 /*add item*/
 
 #add .card-container{
-    width: var(--max-width)+10px;
-    max-width: var(--max-width)+50px;
+    width: 90%;
+    /*width: var(--max-width)+10px;
+    max-width: var(--max-width)+50px;*/
     display:flex;
     flex-direction: column;
     padding: 1rem;
@@ -505,8 +507,8 @@ padding-bottom: 0.4rem;
 
 
 .panel{
-  margin-top: 1rem ;
-  max-height: 0;
+   margin-top: 1rem ;
+   max-height: 0;
    overflow: hidden;
    border-radius: 30px;
    background-color: rgba(132, 205, 199, 0.2);
@@ -746,7 +748,6 @@ padding-bottom: 0.4rem;
     grid-column: 1/span 4;
     display: grid;
     grid-template-columns: 2fr 6fr;
-    overflow-y: scroll;
 }
 #add-subject .divisionStudent .groupName,
 #add-subject .divisionStudent .studentList{
@@ -756,6 +757,8 @@ padding-bottom: 0.4rem;
     -webkit-backdrop-filter: blur( 6.5px );
     border-radius: 10px;
     padding: 1rem;
+    max-height: 800px;
+    overflow-y: scroll;
 }
 
 #add-subject .divisionStudent .studentList ul
@@ -773,6 +776,7 @@ padding-bottom: 0.4rem;
     margin-top: 1.5rem;
 
 }
+
 
 #add-subject .divisionStudent .studentList ul li:first-child{
     margin-top: 0;
@@ -799,20 +803,30 @@ padding-bottom: 0.4rem;
 
 #add-subject .divisionStudent #groupList .groupName div{
     display: flex;
-
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
 }
 
+#add-subject .divisionStudent #groupList .groupName .groupDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+#add-subject .divisionStudent #groupList .groupName .groupDetails label{
+    margin: 0.5rem 0.25rem;
+}
 
+#add-subject .divisionStudent #groupList .groupName h4{
+    margin: 0.8rem;
+}
 
 
 #add-subject .btnNext{ 
     justify-self: center;
     grid-column: 1/span 4;
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     visibility: hidden;
@@ -824,7 +838,7 @@ padding-bottom: 0.4rem;
     align-items: center;
  }
 
- #add-subject #addTeacher{
+ /*#add-subject #addTeacher{
      visibility: hidden;
      height: 0;
      width: 100%;
@@ -845,6 +859,16 @@ padding-bottom: 0.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
+}*/
+
+#add-subject .addTeacher{
+    display: flex;
+   
+    align-items: center;
+}
+
+#add-subject .addTeacher input{
+    margin: 1rem 0;
 }
 
 
@@ -856,7 +880,66 @@ padding-bottom: 0.4rem;
     visibility: collapse;
  }
 
- #addSubject{
-     visibility: hidden;
-     width: 0;
- }
+ #add-subject .panel{
+    
+     background: none;
+     background-color: rgba(0, 0, 0, 0.062);
+     backdrop-filter: blur( 6.5px );
+     -webkit-backdrop-filter: blur( 6.5px );
+}
+#add-subject .panel #groupList{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+
+#add-subject .panel .groupAllInfo{
+    max-height:600px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:right;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#add-subject .panel .groupDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+#add-subject .panel .groupStudents{
+    margin-top: 1rem;
+    padding: 1rem;
+    
+    box-shadow: 0 8px 32px 0 rgba(4, 54, 23, 0.37);
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#add-subject .panel .groupStudents div{
+    margin-top: 0.5rem;
+}
+
+#add-subject .panel .groupStudents:first-child{
+    margin-top: 0rem;
+    color: rgb(3, 39, 18);
+    background-color: darkblue;
+}
+
+#add-subject .card-container .all-seperate .item{
+    display: grid;
+    padding: 1rem;
+    grid-gap: 2rem;
+    grid-template-columns: 4fr 2fr;
+    justify-content: start;
+    align-items: center;
+}

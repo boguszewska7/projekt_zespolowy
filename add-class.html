@@ -184,7 +184,7 @@
                         studentsList.splice(i, 1);
                         console.log(studentsList) 
                          }
-                     }});
+            }});
 
           list.appendChild(row);
             }
@@ -257,7 +257,6 @@
                      }
 
                      localStorage.setItem('MyClasses', JSON.stringify(classesList));
-      
              });
 
                 list2.appendChild(row2);
@@ -363,7 +362,7 @@
             s.style.visibility = "hidden";
         });
 
-        var addNewClass = document.querySelector('#submitNewClass');
+        var submitNewClass = document.querySelector('#submitNewClass');
         submitNewClass.addEventListener('click', (e) => {
             e.preventDefault();
            
