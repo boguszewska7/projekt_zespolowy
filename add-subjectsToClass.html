@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" media="screen and(max width:768)" href="style/mobile.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bf77ad3b6f.js" crossorigin="anonymous"></script>
+    <title>Dodaj przedmioty</title>
+</head>
+
+<body id="add-subject">
+    <nav class="main-nav">
+        <div class="container">
+            <div class="logo">
+                <h1>LOGO</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <div class="user">
+                            <h1>Tomek</h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="tittle-container">
+        <h1>Dodaj przedmiot</h1>
+    </header>
+    <section id="add">
+        <div class="container">
+
+            <div class="card-container">
+                <div class="card-tittle">
+                    <ul>
+                        <li> <p>Nazwa</p></li>
+                        <li> <p>Podział klasy</p> </li>
+                        <li id="hidden-element"> <p>Ilość grup</p> </li>
+                    </ul>
+                </div>
+               <!--<form action="#" id="class-ad">--> 
+                <ul class="ul-add green-shadow">
+                    <li> <input class="selectable" type="text" id="name" name="name" placeholder="name"></li>
+                    <li> <input id="division" type="checkbox" class="selectable" onchange="divisionOn(this);"></li>
+                    <li id="hidden-element"><input type="number" class="selectable" id="group"></li>
+                    <li>
+                        <div class="btn-container">
+                            <button id="filldetails" type="submit" class="btn btn-dark"> DALEJ </button>
+                            <button id="fillback" type="submit" class="btn btn-dark"> COFNIJ </button>
+                        </div>
+                        
+                    </li>
+                    <li class="divisionStudent">
+                        <div class="studentList">
+
+                        </div>
+                        <div id="groupList">
+
+
+                        </div>
+                       
+                    </li>
+                    <li id="addTeacher">
+
+                    </li>
+                    <li class="btnNext">
+                        <div class="btn-container">
+                            <button id="fillTeachers" type="submit" class="btn btn-dark">DALEJ</button>
+                            <button id="addSubject" type="submit" class="btn btn-dark">DODAJ PRZEDMIOT</button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="under-tittle-container">
+                    <h6>Dodane klasy</h>
+                </div>
+                <div class="all-seperate">
+                   
+                </div>
+                   
+                <div class="btn-container-center">
+                  <!--<a class="btn btn-dark" href="index.html">-->  
+                    <button id="submitAllClass" class="btn btn-dark">
+                        <p>ZAPISZ</p><a href="index.html"></a>
+                    </button>
+
+                </div>
+          <!--</form>-->  
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>LOREM IPSUM</p>
+    </footer>
+
+
+    <script>
+        
+        var groupId = 0;
+        let groupList = 0;
+        class Group{
+            constructor(n){
+                this.id= groupId++;
+                this.studentsIdArr = [];
+            }
+
+
+
+        }
+
+        class UI {
+            
+            static clearFields(){
+               
+            }
+
+            static clearAllFields(){
+             
+            }
+
+            static deleteClass(element){
+                if(element.classList.contains('delete')){
+                element.parentElement.parentElement.parentElement.remove();  
+                }
+              
+            }
+
+            static deletePanel(element, id){
+                /*if(element.classList.contains('delete')){
+                var el = document.getElementById(id+"panel");
+                el.remove();
+                var e = document.getElementById(id+"item");
+                e.remove();}*/
+                
+            }
+        }
+
+       function displayStudents(){
+            
+            const list = document.querySelector('.studentList');
+            while (list.hasChildNodes()) {
+                list.removeChild(list.lastChild);
+            }
+            
+            var retrievedData = localStorage.getItem("MyClasses");
+            var classes = JSON.parse(retrievedData);
+            const row2 = document.createElement('ul');
+            const row4 = document.createElement('li');
+            row4.innerHTML = 
+            `<p>Imie i nazwisko</p>`
+            row2.appendChild(row4);
+            //dla mnie dodałam sobie 0, ale ma być to id wybranej klasy
+                for(let i=0; i<classes[0].studentsArr.length; i++){
+
+                    const row3 = document.createElement('li');
+                    row3.className="dark-shadow";
+                    row3.id="studentDraggable";
+                    row3.style.background = "rgb(67,113,98)";
+                    row3.setAttribute("draggable", "true");      
+                    row3.innerHTML = `
+                    <p id=${classes[0].studentsArr[i].id}>${classes[0].studentsArr[i].imie} ${classes[0].studentsArr[i].nazwisko}</p>`
+
+                    row3.addEventListener("dragstart", dragStart);
+                    row3.addEventListener("dragend", dragEnd);
+                    row2.appendChild(row3);
+                }
+
+            list.appendChild(row2);
+            }
+
+
+        let draggableStudent = null;
+         //dodawanie dynamicznie ilosci grup pobieracjac pole z forum
+
+        function addGroupFields(){
+            var number = document.getElementById("group").value;
+            var container = document.getElementById("groupList");
+            var teacherContainer = document.getElementById("addTeacher");
+            teacherContainer.style.visibility="hidden";
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            while (teacherContainer.hasChildNodes()) {
+                teacherContainer.removeChild(teacherContainer.lastChild);
+            }
+            
+            for (i=1;i<=number;i++){
+
+                const list = document.createElement('div');
+                list.id=i;
+                list.className="groupName"
+                const row=document.createElement('div');
+
+               
+                row.innerHTML=`<input type="text" placeholder="Grupa ${i}" value = "Grupa ${i}" >`;
+
+                list.appendChild(row);
+
+                list.addEventListener("dragover", dragOver);
+
+                list.addEventListener("drop", dragDrop);
+
+                container.appendChild(list);
+                
+
+                //superbybyło dodać serchboxa z autouzupelnianie/sugestiami
+                const list2 = document.createElement('div'); //lista do dodawania nauczycieli
+                list2.innerHTML=`<input id=${i} type="text" placeholder="Podaj nauczyciela">`;
+
+                teacherContainer.appendChild(list2);
+
+            }
+
+        }
+
+        function checkStudentsList(){
+            const el = document.querySelector(".studentList ul");
+            console.log(el.children.length)
+            if (el.children.length == 1){
+                const bt = document.querySelector(".btnNext");
+                bt.style.visibility = "visible";
+              
+            } 
+        }
+
+        function  dragStart() {
+           draggableStudent = this;
+           console.log(this.parentElement.id);
+           console.log(this.children[0].id)
+           
+        }
+
+        function  dragEnd() {
+            draggableStudent = null;
+            console.log(this.parentElement.id);
+            console.log(this.children[0].id)
+        }
+        function  dragOver(e) {
+            e.preventDefault();
+        }
+        function  dragDrop() {
+            this.appendChild(draggableStudent);
+            checkStudentsList();
+            //sprawdza czy lista uczniow jest pusta, jesli tak można dodawać nauczycieli
+        }
+
+        var addGroups = document.querySelector('#filldetails');
+        var back = document.querySelector('#fillback');
+        const s = document.querySelector(".divisionStudent");
+        addGroups.addEventListener('click', (e) => {
+            e.preventDefault();
+            addGroups.style.visibility="hidden";
+            back.style.visibility = "visible";
+
+            var addTeachersToGroup = document.querySelector('#fillTeachers');
+            addTeachersToGroup.style.visibility = "visible";
+            
+            addTeachersToGroup.style.width="auto";
+            
+             const el = document.querySelectorAll(".selectable");
+             el.forEach(e => {
+                 e.disabled = "true";
+                 });
+                 
+            const ch = document.querySelector('#division')
+            if(ch.checked){
+                displayStudents()
+                addGroupFields();
+                s.style.maxHeight = "min-content";
+                s.style.padding="2rem";
+
+            }
+            else{
+                var teacherContainer = document.getElementById("addTeacher");
+                while (teacherContainer.hasChildNodes()) {
+                teacherContainer.removeChild(teacherContainer.lastChild);
+            }
+                const list2 = document.createElement('div'); //lista do dodawania nauczycieli
+                list2.innerHTML=`<input type="text" placeholder="Podaj nauczyciela">`;
+                teacherContainer.appendChild(list2);
+                teacherContainer.style.visibility="visible";
+                var addSub = document.querySelector('#addSubject');
+                addSub.style.visibility = "visible";
+                 addSub.style.width = "auto";
+
+            }
+            
+        });
+
+        back.addEventListener('click', (e) => {
+            e.preventDefault();
+            back.style.visibility="hidden";
+            addGroups.style.visibility = "visible";
+            s.style.maxHeight = null;
+            s.style.padding="0";
+            const bt = document.querySelector(".btnNext");
+            bt.style.visibility = "hidden";
+            const el = document.querySelectorAll(".selectable");
+            el.forEach(e => {
+                e.removeAttribute("disabled");
+            });
+            const st = document.querySelector(".studentList");
+            s.style.gridTemplateColumns = "2fr 6fr";
+            st.style.visibility="visible";
+            st.style.maxHeight = "500px";
+            st.style.height =  "500px";
+            st.style.padding="1rem";
+            var teacherContainer = document.getElementById("addTeacher");
+            teacherContainer.style.visibility = "hidden";
+
+
+            var addSub = document.querySelector('#addSubject');
+                addSub.style.visibility = "hidden";
+                 addSub.style.width = "0";
+        });
+        
+      
+//odpowiada za pojawianie sie możliwości dodawania grupy, jeśli jest chcech, to przycisk submit musi pokazywać podział grup,
+//jeżeli nie, to grupa to cała klasa, a submit pokazuje tylko opcje dodawania nauczycieli;
+      function divisionOn(elem){
+      const el = document.querySelectorAll("#hidden-element");
+      console.log(el);
+    
+        if (elem.checked) {   
+            el.forEach(e => {
+                e.style.visibility = "visible";
+            });
+            
+        } else {
+
+            el.forEach(e => {
+                e.style.visibility = "hidden";
+            });
+        }
+ } 
+        var addTeachersToGroup = document.querySelector('#fillTeachers');
+        addTeachersToGroup.addEventListener('click', (e) => {
+            e.preventDefault();
+
+
+            addTeachersToGroup.style.visibility = "hidden"; 
+            addTeachersToGroup.style.width= 0;
+
+
+            var addSub = document.querySelector('#addSubject');
+            addSub.style.visibility = "visible";
+            addSub.style.width = "auto";
+          
+
+
+            var teacherContainer = document.getElementById("addTeacher");
+            
+            teacherContainer.style.gridTemplateColumns = "auto";
+            teacherContainer.style.visibility = "visible";
+
+            s.style.gridTemplateColumns = "auto";
+            s.style.height="auto";
+            
+            const st = document.querySelector(".studentList");
+            st.style.height = 0;
+            st.style.visibility="hidden";
+            st.style.maxHeight = null;
+            st.style.padding="0";
+        } );
+
+        
+  
+
+       
+
+    </script>
+
+</body>
+
+</html>

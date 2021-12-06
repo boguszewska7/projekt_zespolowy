@@ -142,6 +142,7 @@ input[type=submit] {
     border-radius: 26px;
 }
 input[type=checkbox] {
+    height: 25px;
     cursor: pointer;
     width: max-content;
     
@@ -301,12 +302,18 @@ input[type=submit]:hover{
     padding: 1rem;
 }
 
-#add .card-container .card-tittle ul{
+.card-container .card-tittle ul{
     display: grid;
     padding: 1rem 1rem;
     grid-gap: 2rem;
     grid-template-columns: 3fr 4fr 2fr 2fr;
     justify-content: start;
+    align-items: center;
+}
+.card-container .card-tittle ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -623,7 +630,7 @@ padding-bottom: 0.4rem;
 
 
 
-  input[type="checkbox"] {
+#add-teachers input[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
     /* Remove most all native input styles */
@@ -645,7 +652,7 @@ padding-bottom: 0.4rem;
     background-color: rgba(2, 0, 0, 0.37);
   }
   
-  input[type="checkbox"]::before {
+  #add-teachers input[type="checkbox"]::before {
     content: "";
     width: 4em;
     height: 1.5em;
@@ -658,7 +665,7 @@ padding-bottom: 0.4rem;
     background-color: rgba(71, 0, 0, 0.973);
   }
   
-  input[type="checkbox"]:checked::before {
+  #add-teachers input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
   
@@ -705,3 +712,151 @@ padding-bottom: 0.4rem;
 #logowanie button{
     margin-top: 2rem;
 }
+
+#choose-class section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#choose-class .all-seperate{
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#choose-class .all-seperate a{
+    display: flex;
+    margin: 0 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+   
+}
+
+
+#add-subject .divisionStudent
+{  
+    max-height: 0;
+    overflow: hidden; 
+    height: 500px;
+    width: 100%;
+    grid-column: 1/span 4;
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    overflow-y: scroll;
+}
+#add-subject .divisionStudent .groupName,
+#add-subject .divisionStudent .studentList{
+    margin: 0 1rem;
+    box-shadow: 0 8px 32px 0 rgba(2, 0, 0, 0.493);
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+#add-subject .divisionStudent .studentList ul
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#add-subject .divisionStudent .studentList ul li
+{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin-top: 1.5rem;
+
+}
+
+#add-subject .divisionStudent .studentList ul li:first-child{
+    margin-top: 0;
+}
+
+#add-subject .divisionStudent #groupList{
+    display: flex;
+    width: 100%;
+}
+#add-subject .divisionStudent #groupList .groupName{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#add-subject .divisionStudent #groupList .groupName li{
+    display: flex;
+    height: 3rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#add-subject .divisionStudent #groupList .groupName div{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+
+
+#add-subject .btnNext{ 
+    justify-self: center;
+    grid-column: 1/span 4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+ }
+ #add-subject .btnNext .btn-container{ 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ #add-subject #addTeacher{
+     visibility: hidden;
+     height: 0;
+     width: 100%;
+     grid-column: 1/span 4;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ #add-subject #addTeacher div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#add-subject #addTeacher div input{
+    max-width: 60%;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ #hidden-element{
+     visibility: hidden;
+ }
+
+ #fillback{
+    visibility: collapse;
+ }
+
+ #addSubject{
+     visibility: hidden;
+     width: 0;
+ }

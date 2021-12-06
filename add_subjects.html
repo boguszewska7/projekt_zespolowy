@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" media="screen and(max width:768)" href="style/mobile.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bf77ad3b6f.js" crossorigin="anonymous"></script>
+    <title>Dodaj klasy</title>
+</head>
+
+<body id="choose-class">
+    <nav class="main-nav">
+        <div class="container">
+            <div class="logo">
+                <h1>LOGO</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <div class="user">
+                            <h1>Tomek</h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="tittle-container">
+        <h1>Wybierz klasę</h1>
+    </header>
+    <section>
+
+
+                <div class="all-seperate">
+                   
+                </div>
+          <!--</form>-->  
+          
+    </section>
+    <footer>
+        <p>LOREM IPSUM</p>
+    </footer>
+
+
+    <script>
+
+       
+    
+        class UI {
+            static displayNameOfClasses(){
+            const list = document.querySelector('.all-seperate');
+            
+            var retrievedData = localStorage.getItem("MyClasses");
+            var classes = JSON.parse(retrievedData);
+                for(let i=0; i<classes.length; i++){
+
+                    const row2 = document.createElement('div');
+                   
+                    row2.innerHTML = `
+                    <a href="#" class="button dark-shadow">${classes[i].name}</a>`
+                    list.appendChild(row2);
+                }
+
+              
+
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', UI.displayNameOfClasses);
+
+    </script>
+
+</body>
+
+</html>
