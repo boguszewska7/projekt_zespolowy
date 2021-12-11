@@ -39,20 +39,23 @@
         <div class="container">
            
             <div class="card-container">
-                <div class="card-tittle">
-                    <ul>
-                        <li>IMIĘ</li>
-                        <li>NAZWISKO</li>
-                        <li>ILOŚĆ GODZIN</li>
-
-                    </ul>
-                </div>
 
                   <!-- <form action="#">--> 
                     <ul class="ul-add green-shadow">
-                        <li> <input type="text" id="imie" name="imie" placeholder="Imie"></li>
-                        <li> <input type="text" id="nazwisko" name="Nazwisko" placeholder="Nazwisko"></li>
-                        <li> <input type="number" id="count" name="count" placeholder="1"></li>
+                        <li> <div class="detail">
+                             <p>Podaj imię nauczyciela:</p>
+                             <input type="text" id="imie" name="imie" placeholder="Imie">
+                        </div></li>
+                      <li> <div class="detail">
+                            <p>Podaj nazwisko nauczyciela:</p>
+                             <input type="text" id="nazwisko" name="Nazwisko" placeholder="Nazwisko">
+                       </div></li>
+                       
+                        <li> 
+                            <div class="detail">
+                                <p>Ilość godzin:</p>
+                                <input type="number" id="count" name="count" placeholder="1">
+                            </div>
                         <li>
                             <div class="btn-container">
                                 <input id="addNew" class="btn btn-dark" type="submit" value="DODAJ">
