@@ -874,8 +874,10 @@ padding-bottom: 0.4rem;
 }
 
 #choose-class .all-seperate{
-    justify-self: center;
-    display: flex;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
     justify-content: center;
     align-items: center;
 }
