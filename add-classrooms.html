@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+        <script type="text/javascript" src="scripts.js"></script>
     <script src="https://kit.fontawesome.com/bf77ad3b6f.js" crossorigin="anonymous"></script>
     <title>Dodaj sale</title>
 </head>
@@ -90,108 +91,7 @@
 </body>
 
 <script>
-    var classroomId = 0;
-    var classroomsList = [];
-    class Classroom {
-
-        constructor(kod, nazwa, ilosc_miejsc) {
-            this.id = classroomId++;
-            this.kod = kod;
-            this.nazwa = nazwa;
-            this.ilosc_miejsc = ilosc_miejsc;
-        }
-
-
-        get Kod() {
-            return this.kod;
-        }
-        get Nazwa() {
-            return this.nazwa;
-        }
-        get Ilosc_miejsc() {
-            return this.ilosc_miejsc;
-        }
-    }
-
-    class UI {
-        static displayClassroom() {
-            var tmp = new Classroom("czyt", "czytelnia", "30");
-
-            UI.addClassRoomToList(tmp);
-        }
-
-        static addClassRoomToList(klasa) {
-
-            const list2 = document.querySelector('.all');
-            const row2 = document.createElement('li');
-            const row3=document.createElement('ul');
-             row3.className='item';
-            row3.innerHTML = `
-             <li> <p>${klasa.kod}</p></li>
-             <li> <p>${klasa.nazwa}</p></li>
-             <li> <p>${klasa.ilosc_miejsc}</p> </li>
-             <li> <div class="btn-container">
-              <input id=${klasa.id} class="btn btn-dark delete" type="submit" value="USUŃ">
-            
-                   </div>
-            </li>
-        `;
-       //usuwanie klasy i update tablicy class
-        row3.addEventListener('click' ,(e) => {
-        
-            UI.deleteClassroom(e.target);
-            console.log(e.target)
-            let s=e.target.id;
-            for( var i = 0; i < classroomsList.length; i++){ 
-            if (classroomsList[i].id == s) 
-            {
-               classroomsList.splice(i, 1);
-               console.log(classroomsList)}
-            };
-
-           localStorage.setItem('MyClassrooms', JSON.stringify(classroomsList));
-       });
-
-row2.appendChild(row3);
-     list2.appendChild(row2);     
-        }
-        static clearFields(){
-                document.querySelector('#kod').placeholder= 'kod';
-                document.querySelector('#name').placeholder= 'nazwa';
-                document.querySelector('#count').placeholder= '1';
-
-        }
-
-        static deleteClassroom(element){
-                if(element.classList.contains('delete')){
-                element.parentElement.parentElement.parentElement.remove();  
-                }
-              
-            }
-    }
-  
-   
-    var addNew = document.querySelector('#submitNewClassroom');
-        addNew.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            const kod = document.querySelector('#kod').value;
-            const nazwa = document.querySelector('#name').value;
-            const ilosc_miejsc = document.querySelector('#count').value;
-        
-           klasa = new Classroom(kod,nazwa, ilosc_miejsc);
-
-             classroomsList.push(klasa);
-
-            UI.addClassRoomToList(klasa);
-           
-            UI.clearFields();
-
-            localStorage.setItem('MyClassrooms', JSON.stringify(classroomsList));
-        });
-
-
-
+  initializeAddClassrooms();
 </script>
 
 
