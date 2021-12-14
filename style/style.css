@@ -891,8 +891,6 @@ input:focus {
     #add-subject .divisionStudent .studentList{
         align-self: flex-start;
         justify-content: flex-start;
-        position: relative;
-        height: min-content;
     }
 
         #add-subject .divisionStudent .studentList ul {

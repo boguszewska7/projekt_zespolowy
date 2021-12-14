@@ -395,7 +395,7 @@ class UI {
                             <p>${klasa.name}</p>
                             </li>
                             <li>
-                            <p>${klasa.teacher}</p>
+                            <p>${klasa.te}</p>
                             </li>
                             <li>
                                 <div class="btn-container">
