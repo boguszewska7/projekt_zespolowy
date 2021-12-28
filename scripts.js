@@ -36,10 +36,11 @@ var classID = 0;
 let classesList = [];
 
 class Class {
-    constructor(name) {
+    constructor(name, teacher) {
         this.id = classID++;
         this.name = name;
         this.studentsArr = [];
+        this.teacher = teacher;
     }
     newStudent(imie, nazwisko) {
         let s = new Student(imie, nazwisko);
@@ -67,6 +68,7 @@ class Class {
         this.name = tmp;
         this.id = classID++;
         this.studentsArr = [];
+        this.teacher = "";
     }
 }
 
@@ -295,10 +297,20 @@ row2.addEventListener('click' ,(e) => {
              <li> <p>${klasa.nazwa}</p></li>
              <li> <p>${klasa.ilosc_miejsc}</p> </li>
              <li> <div class="btn-container">
-              <input class="btn btn-dark" type="submit" value="USUŃ">
+              <input id=${klasa.id} class="btn btn-dark delete" type="submit" value="USUŃ">
+              <input id=${klasa.id} class="btn btn-dark edit" type="submit" value="EDYTUJ">
                    </div>
             </li>
         `;
+
+        row2.addEventListener('click' ,(e) => {
+       
+            UI.deleteClassroom(e.target);
+            UI.editClassroom(e.target);
+            /*let s= e.target.id;
+            UI.deletePanel(e.target,s);*/
+     
+     });
 
         list2.appendChild(row2);
     }
@@ -335,6 +347,52 @@ row2.addEventListener('click' ,(e) => {
     static deleteStudent(element) {
         if (element.classList.contains('delete'))
             element.parentElement.parentElement.parentElement.remove();
+    }
+    static deleteStudentFromMemory(element){
+        if (element.classList.contains('delete'))
+        {
+            element.parentElement.parentElement.parentElement.remove();
+           // console.log(element.parentElement.id)
+            const classId  = element.parentElement.id;
+            const StudentId =  element.id;
+            const retrievedData = localStorage.getItem("MyClasses");
+            const classes = JSON.parse(retrievedData);
+            var thisClass = [];
+            var classData = [];
+            for(var i = 0 ; i<classes.length ; i++){
+                if(classes[i].id == classId ){
+                    thisClass = classes[i].studentsArr;
+                    classData = classes[i];}
+            }
+
+            //usuniecie studenta z listy Studentow
+            for (var i = 0; i < thisClass.length; i++) {
+                if(thisClass[i].id == StudentId)
+                 { 
+                     console.log(thisClass[i].id)
+                     thisClass.splice(i, 1);
+                 }
+            }
+
+            //Stworzenie kopii klasy 
+
+            const copyClass = new Class(classData.name, classData.teacher);
+            copyClass.id = classData.id;
+            copyClass.studentsArr = thisClass;
+            console.log(copyClass);
+
+            //USUNIECIE TEJ KLASY
+            for (var i = 0; i < classesList.length; i++) {
+                if (classesList[i].id == classId) 
+                { classesList.splice(i, 1); }
+            }
+
+            classesList.push(copyClass);
+
+            localStorage.setItem('MyClasses', JSON.stringify(classesList));
+
+        }
+            
     }
 
     static deleteClass(element) {
@@ -374,6 +432,21 @@ row2.addEventListener('click' ,(e) => {
     e.remove();
 
 
+    }
+
+    static deleteClassroom(element){
+
+        if(element.classList.contains('delete')){
+        element.parentElement.parentElement.parentElement.remove(); 
+        let s= element.id;
+        for( var i = 0; i < clasroomsList.length; i++){ 
+            if (clasroomsList[i].id == s) 
+           {  clasroomsList.splice(i, 1); }
+        }
+
+        localStorage.setItem('MyClassrooms', JSON.stringify(clasroomsList)); 
+        }
+      
     }
 
 
@@ -484,6 +557,195 @@ row2.addEventListener('click' ,(e) => {
 
         //console.log(dostepnosc);
         return dostepnosc;
+    }
+
+    static editClassroom(element){
+        const u = element.parentElement.parentElement.parentElement;
+              //   console.log(element.parentElement.parentElement.parentElement)
+         if(element.value == 'EDYTUJ'){
+                 
+                 const classroomK = u.firstElementChild.firstElementChild;  
+                 const classroomKInput = document.createElement('input');
+                 classroomKInput.type = 'text';
+                 classroomKInput.value = classroomK.textContent;
+                 classroomKInput.addEventListener('click', (e) =>{
+                     u.parentElement.click();
+                 })
+                 u.insertBefore(classroomKInput, u.firstElementChild)
+                 console.log(classroomK.parentElement);
+                 u.removeChild(classroomK.parentElement);
+                 
+                const classroomName = u.children[1];
+                 const classroomNameInput = document.createElement('input');
+                 classroomNameInput.addEventListener('click', (e) =>{
+                     u.parentElement.click();
+                 })
+     
+                 classroomNameInput.type = 'text';
+                 classroomNameInput.value = classroomName.textContent;
+                 u.insertBefore(classroomNameInput, u.children[1]) 
+                 u.removeChild(classroomName);
+    
+    
+    
+    
+                 const classroomC = u.children[2];
+                 const classroomCInput = document.createElement('input');
+                 classroomCInput.addEventListener('click', (e) =>{
+                     u.parentElement.click();
+                 })
+     
+                 classroomCInput.type = 'number';
+                 classroomCInput.value = classroomC.textContent;
+                 u.insertBefore(classroomCInput, u.children[2]) 
+                 u.removeChild(classroomC);
+     
+     
+                 element.value = 'ZAPISZ';
+     
+                 
+            // document.getElementById('pa').style.pointerEvents = 'none';
+             }
+             else if(element.value === 'ZAPISZ'){
+          
+                 const classroomKInput = u.children[0]  //input
+                 const classroomK = document.createElement('span');
+                 classroomK.textContent = classroomKInput.value;
+                 const li = document.createElement('li')
+                 li.appendChild(classroomK);
+                 u.insertBefore(li,u.firstElementChild)
+                 console.log(classroomKInput)
+                 u.removeChild(classroomKInput);
+                 element.value = 'EDYTUJ';
+     
+                 const classroomNameInput = u.children[1];
+                 const classroomName = document.createElement('span');
+                 classroomName.textContent = classroomNameInput.value;
+                 const l = document.createElement('li')
+                 l.appendChild(classroomName);
+                 u.insertBefore(l,u.children[1])
+                 u.removeChild(classroomNameInput);
+    
+    
+                 const classroomCInput = u.children[2];
+                 const classroomC = document.createElement('span');
+                 classroomC.textContent = classroomCInput.value;
+                 const lis = document.createElement('li')
+                 lis.appendChild(classroomC);
+                 u.insertBefore(lis,u.children[2])
+                 u.removeChild(classroomCInput);
+     
+     
+                 const classId = element.id;
+               
+                 const retrievedData = localStorage.getItem("MyClassrooms");
+                 const classes = JSON.parse(retrievedData);
+                 var classData = [];
+                 for(var i = 0 ; i<classes.length ; i++){
+                     if(classes[i].id == classId){
+                         classData = classes[i];
+                         console.log(classData);
+                     }
+                 }
+                 //USUNIECIE TEJ KLASY
+                 for (var i = 0; i < clasroomsList.length; i++) {
+                     if (clasroomsList[i].id == classId){ 
+                        clasroomsList.splice(i, 1); 
+                     }
+                 }
+    
+                 const copyClass = new Classroom(classroomK.textContent,classroomName.textContent,classroomC.textContent)
+                 console.log(copyClass)
+                 clasroomsList.push(copyClass);
+     
+                 localStorage.setItem('MyClassrooms', JSON.stringify(clasroomsList));
+            }
+         }
+ 
+    
+    static editClass(element){
+       const u = element.parentElement.parentElement.parentElement;
+      // console.log(element.parentElement.parentElement.parentElement)
+        if(element.value == 'EDYTUJ'){
+            
+            const className = u.firstElementChild.firstElementChild;  
+            const classNameInput = document.createElement('input');
+            classNameInput.type = 'text';
+            classNameInput.value = className.textContent;
+            classNameInput.addEventListener('click', (e) =>{
+                u.parentElement.click();
+            })
+            u.insertBefore(classNameInput, u.firstElementChild)
+            console.log(className.parentElement);
+            u.removeChild(className.parentElement);
+            
+           const teacherName = u.children[1];
+            const teacherNameInput = document.createElement('input');
+            teacherNameInput.addEventListener('click', (e) =>{
+                u.parentElement.click();
+            })
+
+            teacherNameInput.type = 'text';
+            teacherNameInput.value = teacherName.textContent;
+            u.insertBefore(teacherNameInput, u.children[1]) 
+            u.removeChild(teacherName);
+
+
+            element.value = 'ZAPISZ';
+
+            
+       // document.getElementById('pa').style.pointerEvents = 'none';
+        }
+       else if(element.value === 'ZAPISZ'){
+            const classNameInput = u.children[0]  //input
+            const className = document.createElement('span');
+            className.textContent = classNameInput.value;
+            const li = document.createElement('li')
+            li.appendChild(className);
+            u.insertBefore(li,u.firstElementChild)
+            console.log(classNameInput)
+            u.removeChild(classNameInput);
+            element.value = 'EDYTUJ';
+
+            const teacherNameInput = u.children[1];
+            const teacherName = document.createElement('span');
+            teacherName.textContent = teacherNameInput.value;
+            const l = document.createElement('li')
+            l.appendChild(teacherName);
+            u.insertBefore(l,u.children[1])
+            u.removeChild(teacherNameInput);
+
+
+            const classId = element.id;
+            
+            const retrievedData = localStorage.getItem("MyClasses");
+            const classes = JSON.parse(retrievedData);
+            var classData = [];
+            for(var i = 0 ; i<classes.length ; i++){
+                if(classes[i].id == classId){
+                    classData = classes[i];
+                    console.log(classData);
+                }
+            }
+
+            //Stworzenie kopii klasy 
+
+            const copyClass = new Class(className.textContent, teacherName.textContent);
+            copyClass.id = classData.id;
+            copyClass.studentsArr = classData.studentsArr;
+            console.log(copyClass);
+
+            //USUNIECIE TEJ KLASY
+            for (var i = 0; i < classesList.length; i++) {
+                if (classesList[i].id == classId){ 
+                    classesList.splice(i, 1); 
+                }
+            }
+
+            classesList.push(copyClass);
+
+            localStorage.setItem('MyClasses', JSON.stringify(classesList));
+        }
     }
 
 
@@ -651,11 +913,12 @@ row2.addEventListener('click' ,(e) => {
                             <p>${klasa.name}</p>
                             </li>
                             <li>
-                            <p>${klasa.te}</p>
+                            <p>${klasa.teacher}</p>
                             </li>
                             <li>
                                 <div class="btn-container">
                                  <input id=${klasa.id} class="btn btn-dark delete" type="submit" value="USUŃ">
+                                 <input id=${klasa.id} class="btn btn-dark edit" type="submit" value="EDYTUJ">
                                 </div>
                             </li>
                  </ul>
@@ -675,13 +938,14 @@ row2.addEventListener('click' ,(e) => {
         row2.addEventListener('click', (e) => {
             UI.deleteClass(e.target);
             let s = e.target.id;
+            UI.editClass(e.target);
 
             UI.deletePanelClass(e.target, s);
-            for (var i = 0; i < classesList.length; i++) {
+         /*   for (var i = 0; i < classesList.length; i++) {
                 if (classesList[i].id == s) { classesList.splice(i, 1); }
             }
 
-            localStorage.setItem('MyClasses', JSON.stringify(classesList));
+            localStorage.setItem('MyClasses', JSON.stringify(classesList));*/
         });
 
         list2.appendChild(row2);
@@ -699,17 +963,22 @@ row2.addEventListener('click' ,(e) => {
             row5.innerHTML = `
                     <li>${klasa.studentsArr[i].Imie} ${klasa.studentsArr[i].Nazwisko}</li>
                     <li>
-                    <div class="btn-container">
+                    <div id=${klasa.id}  class="btn-container">
                     <input id=${klasa.studentsArr[i].id} class="btn btn-dark  delete" type="submit" value="USUŃ">
-                     </div>
+                    </div>
                      </li>
                     `;
 
             row5.addEventListener('click', (e) => {
-                UI.deleteStudent(e.target);
+                UI.deleteStudentFromMemory(e.target);
                 let I = e.target.id;
+               
                 for (var i = 0; i < klasa.studentsArr.length; i++) {
-                    if (klasa.studentsArr[i].Id == I) { klasa.studentsArr.splice(i, 1); }
+                    if (klasa.studentsArr[i].Id == I)
+                     { 
+                         console.log(klasa.studentsArr[i].Id)
+                         klasa.studentsArr.splice(i, 1);
+                     }
                 }
 
                 localStorage.setItem('MyClasses', JSON.stringify(classesList));
@@ -1046,6 +1315,10 @@ function initializeAddClass() {
     var addNew = document.querySelector('#addNew');
     addNew.addEventListener('click', (e) => {
         e.preventDefault();
+        if(validateFormStudent()!=false)
+        {
+
+        
         //const t = document.querySelector("#liczba");
         //t.style.visibility = "visible";
         const element = document.querySelector("#submitNewClass");
@@ -1062,10 +1335,9 @@ function initializeAddClass() {
 
         studentsList.push(student);
 
-        console.log(studentsList);
 
         UI.addStudentToList(student);
-        UI.clearStudentForm();
+        UI.clearStudentForm();}
     });
 
     var addNewClass = document.querySelector('#addNewClass');
@@ -1085,11 +1357,14 @@ function initializeAddClass() {
     var addNewClassSubmit = document.querySelector('#submitNewClass');
     submitNewClass.addEventListener('click', (e) => {
         e.preventDefault();
+        if(validateFormClass()!=false){
 
+       
         const name = document.querySelector('#name').value;
+        const teacher = document.querySelector('#teacherSelect').value
         // const studentsArr = document.querySelector('#nazwisko').value;
 
-        let newclass = new Class(name);
+        let newclass = new Class(name, teacher);
 
         console.log(studentsList[0].imie);
 
@@ -1120,13 +1395,14 @@ function initializeAddClass() {
         row.innerHTML = '';
 
         UI.clearClassForm();
-    });
+     }});
 }
 
 function initializeAddTeachers() {
     var addNew = document.querySelector('#addNew');
     addNew.addEventListener('click', (e) => {
         e.preventDefault();
+        if(validateFormTeacher()!=false){
 
         const imie = document.querySelector('#imie').value;
         const nazwisko = document.querySelector('#nazwisko').value;
@@ -1228,15 +1504,18 @@ function initializeAddTeachers() {
         UI.addNauczycielToList(nauczyciel);
         localStorage.setItem('MyTeachers', JSON.stringify(nauczycieleList));
         UI.clearTeacherForm();
-    });
+               
+    } });
 }
 
 function initializeAddClassrooms() {
+   
     var addNew = document.querySelector('#submitNewClassroom');
     addNew.addEventListener('click', (e) => {
         e.preventDefault();
-
-        const kod = document.querySelector('#kod').value;
+      if(validateFormClassRoom()!=false)
+      {
+          const kod = document.querySelector('#kod').value;
         const nazwa = document.querySelector('#name').value;
         const ilosc_miejsc = document.querySelector('#count').value;
 
@@ -1248,6 +1527,8 @@ function initializeAddClassrooms() {
 
         localStorage.setItem('MyClassrooms', JSON.stringify(clasroomsList));
         UI.clearClassRoomForm();
+      }  
+        
     });
 }
 
@@ -1346,3 +1627,66 @@ function initializeSubjects() {
         container.style.display = "none";
     });
 }
+
+function validateFormClassRoom() {
+        const kod = document.querySelector('#kod').value;
+        const nazwa = document.querySelector('#name').value;
+        const ilosc_miejsc = document.querySelector('#count').value;
+        if (kod == null || kod == "" )  {
+            alert("Podaj kod sali");
+            return false;
+        }
+        else if(nazwa == null || nazwa == ""){
+            alert("Podaj nazwę sali ");
+            return false;
+        }
+        else if(ilosc_miejsc == null || ilosc_miejsc == ""){
+            alert("Podaj ilość miejsc w sali");
+            return false;
+        }
+}
+
+function validateFormTeacher() {
+        const imie = document.querySelector('#imie').value;
+        const nazwisko = document.querySelector('#nazwisko').value;
+        const ilosc = document.querySelector('#count').value;
+    if (imie == null || imie == "" )  {
+        alert("Podaj imię nauczyciela");
+        return false;
+    }
+    else if( nazwisko == null ||  nazwisko == ""){
+        alert("Podaj nazwisko nauczyciela");
+        return false;
+    }
+    else if(ilosc == null || ilosc == ""){
+        alert("Podaj ilość godzin pracujących nauczyciela w miesiącu");
+        return false;
+    }
+}
+
+function validateFormClass() {
+    const name = document.querySelector('#name').value;
+    const teacher = document.querySelector('#teacherSelect').value
+if (name == null || name == "" )  {
+    alert("Podaj kod klasy");
+    return false;
+}
+else if( teacher == null ||  teacher == ""){
+    alert("Wybierz nauczyciela");
+    return false;
+}
+}
+
+function validateFormStudent() {
+    const imie = document.querySelector('#imie').value;
+    const nazwisko = document.querySelector('#nazwisko').value;
+if (imie == null ||  imie == "")  {
+    alert("Podaj imię ucznia");
+    return false;
+}
+else if(nazwisko == null || nazwisko == "" ){
+    alert("Podaj nazwisko ucznia");
+    return false;
+}
+}
+
