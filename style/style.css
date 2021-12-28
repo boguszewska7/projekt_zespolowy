@@ -548,11 +548,11 @@ input:focus {
     margin-top: 5rem;
 }
 
-/*kalendarz*/
+/*kalendarz
 
 .hidden_item input {
     pointer-events: none;
-}
+}*/
 
 .hidden_item,
 .planner {
