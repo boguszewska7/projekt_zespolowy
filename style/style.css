@@ -162,6 +162,10 @@ section {
     /* background-color: #BB8A52;*/
     border: white 2px solid;
 }
+.btn-border-dark {
+    /* background-color: #BB8A52;*/
+    border: #04191c 2px solid;
+}
 
 /*FORM*/
 
@@ -208,6 +212,13 @@ input[type=submit]:hover {
 
 a {
     color: var(--secondary-color);
+}
+
+.back-btn{
+    justify-content: right;
+    width: 90%;
+    margin-left: 3rem ;
+    margin-bottom: 1rem;
 }
 
 /*nav*/
@@ -1162,4 +1173,35 @@ input:focus {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+
+.planList{
+    width:90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;  
+  
+}
+
+.planUl{
+    width: 600px;
+    margin: auto;
+    padding: 1rem 3rem;
+    background-color: #122a2d ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.planUl .title{
+    width: 100%;
+  
+}
+
+.planDetail span{
+    margin-right: 200px;
 }

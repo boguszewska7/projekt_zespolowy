@@ -1317,8 +1317,6 @@ function initializeAddClass() {
         e.preventDefault();
         if(validateFormStudent()!=false)
         {
-
-        
         //const t = document.querySelector("#liczba");
         //t.style.visibility = "visible";
         const element = document.querySelector("#submitNewClass");
