@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
     <script src="https://kit.fontawesome.com/bf77ad3b6f.js" crossorigin="anonymous"></script>
     <title>Archiwalne plany</title>
 </head>
@@ -39,35 +39,43 @@
     <section id="add">
         <div class="container">
             <div class="back-btn">
-               <a class="btn btn-border" href="3card.html">WRÓĆ</a>
+                <a class="btn btn-border" href="3card.html">WRÓĆ</a>
             </div>
 
             <div class="planList">
-                
                 <ul class="planUl green-shadow">
+                    <!--!-->
                     <div class="title">
                         <p>DATA WYGENEROWANIA PLANU:</p>
                     </div>
-                    
                     <li>
-                        <div class="planDetail">
-                           <span>2022-11-1</span> 
-                            <button class="btn btn-border">PRZEJDŹ</button>
-                            <button class="btn btn-border">Przełącz</button>
+                        <div class="planDetail"><span>11.01.2022 18:18:24</span>
+                            <!--!-->
+                            <a class="btn btn-border" href="/plans/1">
+                                <!--!-->Przejdź
+                            </a><button class="btn btn-border">
+                                <!--!-->Przełącz
+                            </button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="planDetail"><span>15.01.2022 18:14:36</span>
+                            <!--!-->
+                            <a class="btn btn-border" href="/plans/2">
+                                <!--!-->Przejdź
+                            </a><button class="btn btn-border">
+                                <!--!-->Przełącz
+                            </button>
                         </div>
                     </li>
                     <li>
                         <div class="planDetail">
-                           <span>2022-11-1</span> 
-                            <button class="btn btn-border">PRZEJDŹ</button>
+                         <span>Jeszcze nie wygenerowano tego planu</span>
+                         <button class="btn btn-border">
+                            <!--!-->Przełącz
+                        </button>
                         </div>
-                    </li>
-                    <li>
-                        <div class="planDetail">
-                           <span>2022-11-1</span> 
-                            <button class="btn btn-border">PRZEJDŹ</button>
-                        </div>
-                    </li>
+                    </li><button class="btn btn-border">Nowy plan lekcji</button>
                 </ul>
             </div>
         </div>

@@ -1337,11 +1337,11 @@ function initializeAddClass() {
         UI.addStudentToList(student);
         UI.clearStudentForm();}
     });
-
+    var back = document.querySelector('#fillbackClass');
     var addNewClass = document.querySelector('#addNewClass');
     addNewClass.addEventListener('click', (e) => {
         e.preventDefault();
-
+        back.style.visibility = "visible";
         const element = document.querySelector(".addStudent");
         element.style.visibility = "visible";
         element.style.padding = " 0 16px"
@@ -1352,11 +1352,32 @@ function initializeAddClass() {
         s.style.visibility = "hidden";
     });
 
+    back.addEventListener('click', (e) => {
+        e.preventDefault();
+        back.style.visibility = "hidden";
+        addNewClass.style.visibility = "visible"
+        const k = document.querySelector(".studentListContainer");
+        k.style.visibility = "hidden";
+        k.style.height = 0;
+        const s = document.querySelector("#addNewClass");
+        s.style.visibility = "visible";
+        const element = document.querySelector(".addStudent");
+        element.style.visibility = "hidden";
+        element.style.padding = "0 0";
+        element.style.height = "0";
+        studentsList = [];
+
+        const row = document.querySelector('#studentList');
+        row.innerHTML = '';
+
+        UI.clearClassForm();
+    });
+
     var addNewClassSubmit = document.querySelector('#submitNewClass');
-    submitNewClass.addEventListener('click', (e) => {
+    addNewClassSubmit.addEventListener('click', (e) => {
         e.preventDefault();
         if(validateFormClass()!=false){
-
+            back.style.visibility = "hidden";
        
         const name = document.querySelector('#name').value;
         const teacher = document.querySelector('#teacherSelect').value
@@ -1372,14 +1393,14 @@ function initializeAddClass() {
             const s = document.querySelector("#submitNewClass");
             s.style.visibility = "hidden";
         });
-
+           
         classesList.push(newclass);
         localStorage.setItem('MyClasses', JSON.stringify(classesList));
 
         UI.addClassToList(newclass);
 
         const k = document.querySelector(".studentListContainer");
-        k.style.visibility = "hiddem";
+        k.style.visibility = "hidden";
         k.style.height = 0;
         const s = document.querySelector("#addNewClass");
         s.style.visibility = "visible";

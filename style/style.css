@@ -1076,6 +1076,7 @@ input:focus {
     margin-top: 0 !important;
 }
 
+#fillbackClass,
 #fillback {
     visibility: collapse;
 }
@@ -1186,8 +1187,9 @@ input:focus {
   
 }
 
-.planUl{
-    width: 600px;
+.planUl{ 
+    min-width: 600px;
+    width: 30%;
     margin: auto;
     padding: 1rem 3rem;
     background-color: #122a2d ;
@@ -1199,12 +1201,36 @@ input:focus {
 
 .planUl .title{
     width: 100%;
-  
+    margin-bottom: 16px;
+}
+
+.planUl li{
+    margin:8px 6px;
+}
+
+.planUl .planDetail{
+    width: 600px;
+    display: grid;
+    align-items: center; 
+    justify-content: center;
+    text-align: start;
+    grid-gap: 2rem;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+.planUl .btn{
+    margin-top:6px;
+    padding: 10px 16px;
+    text-align: center;
 }
 
 .planDetail span{
-    margin-right: 200px;
+margin-left: 6px;
+color:rgba(255, 222, 180, 0.671);
 }
+
+
+
 
 
 .showPlan{
